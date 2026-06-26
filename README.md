@@ -10,20 +10,20 @@ This repository demonstrates a production-ready Angular monorepo with:
 
 - **2 Applications**
 
-  - `shop` - Angular e-commerce application with product listings and detail views
   - `api` - Backend API with Docker support serving product data
+  - `tac-toe` - A tic-tac-toe PWA (WIP)
 
-- **6 Libraries**
+<!-- - **6 Libraries**
 
   - `@org/feature-products` - Product listing feature (Angular)
   - `@org/feature-product-detail` - Product detail feature (Angular)
   - `@org/data` - Data access layer for shop features
   - `@org/shared-ui` - Shared UI components
   - `@org/models` - Shared data models
-  - `@org/products` - API product service library
+  - `@org/products` - API product service library -->
 
 - **E2E Testing**
-  - `shop-e2e` - Playwright tests for the shop application
+  - `tac-toe-e2e` - Playwright tests for the tac-toe application
 
 ## 🚀 Quick Start
 
@@ -36,11 +36,9 @@ cd <your-repository-name>
 # (Note: You may need --legacy-peer-deps)
 npm install
 
-# Serve the Angular shop application (this will simultaneously serve the API backend)
-npx nx run shop:serve
+# Serve the Angular tac-toe application (this will simultaneously serve the API backend)
+npx nx run tac-toe:serve
 
-# ...or you can serve the API separately
-npx nx run api:serve
 
 # Build all projects
 npx nx run-many -t build
@@ -52,7 +50,7 @@ npx nx run-many -t test
 npx nx run-many -t lint
 
 # Run e2e tests
-npx nx run shop-e2e:e2e
+npx nx run tac-toe-e2e:e2e
 
 # Run tasks in parallel
 
@@ -71,7 +69,7 @@ This repository showcases several powerful Nx features:
 Enforces architectural constraints using tags. Each project has specific dependencies it can use:
 
 - `scope:shared` - Can be used by all projects
-- `scope:shop` - Shop-specific libraries
+- `scope:tac-toe` - Tac-toe-specific libraries
 - `scope:api` - API-specific libraries
 - `type:feature` - Feature libraries
 - `type:data` - Data access libraries
@@ -84,7 +82,7 @@ Enforces architectural constraints using tags. Each project has specific depende
 npx nx graph
 
 # View a specific project's details
-npx nx show project shop --web
+npx nx show project tac-toe --web
 ```
 
 [Learn more about module boundaries →](https://nx.dev/docs/features/enforce-module-boundaries)
@@ -114,10 +112,10 @@ End-to-end testing with Playwright is pre-configured:
 
 ```bash
 # Run e2e tests
-npx nx run shop-e2e:e2e
+npx nx run tac-toe-e2e:e2e
 
 # Run e2e tests in CI mode
-npx nx run shop-e2e:e2e-ci
+npx nx run tac-toe-e2e:e2e-ci
 ```
 
 [Learn more about E2E testing →](https://nx.dev/docs/technologies/test-tools/playwright)
@@ -158,17 +156,10 @@ This feature helps maintain a healthy CI pipeline by automatically detecting and
 
 ```
 ├── apps/
-│   ├── shop/           [scope:shop]    - Angular e-commerce app
-│   ├── shop-e2e/                       - E2E tests for shop
+│   ├── tac-toe/           [scope:tac-toe]    - Angular app
+│   ├── tac-toe-e2e/                       - E2E tests for tac-toe
 │   └── api/            [scope:api]     - Backend API with Docker
 ├── packages/
-│   ├── shop/
-│   │   ├── feature-products/        [scope:shop,type:feature] - Product listing
-│   │   ├── feature-product-detail/  [scope:shop,type:feature] - Product details
-│   │   ├── data/                    [scope:shop,type:data]    - Data access
-│   │   └── shared-ui/               [scope:shop,type:ui]      - UI components
-│   ├── api/
-│   │   └── products/    [scope:api]    - Product service
 │   └── shared/
 │       └── models/      [scope:shared,type:data] - Shared models
 ├── nx.json             - Nx configuration
@@ -182,10 +173,7 @@ This repository uses tags to enforce module boundaries:
 
 | Project            | Tags                         | Can Import From              |
 | ------------------ | ---------------------------- | ---------------------------- |
-| `shop`             | `scope:shop`                 | `scope:shop`, `scope:shared` |
-| `api`              | `scope:api`                  | `scope:api`, `scope:shared`  |
-| `feature-products` | `scope:shop`, `type:feature` | `scope:shop`, `scope:shared` |
-| `data`             | `scope:shop`, `type:data`    | `scope:shared`               |
+| `tac-toe`          | `scope:tac-toe`              | `scope:tac-toe`,             |
 | `models`           | `scope:shared`, `type:data`  | Nothing (base library)       |
 
 ## 📚 Useful Commands
@@ -194,12 +182,12 @@ This repository uses tags to enforce module boundaries:
 # Project exploration
 npx nx graph                                    # Interactive dependency graph
 npx nx list                                     # List installed plugins
-npx nx show project shop --web                 # View project details
+npx nx show project tac-toe --web                 # View project details
 
 # Development
-npx nx run shop:serve                              # Serve Angular app
+npx nx run tac-toe:serve                              # Serve Angular app
 npx nx run api:serve                               # Serve backend API
-npx nx run shop:build                              # Build Angular app
+npx nx run tac-toe:build                              # Build Angular app
 npx nx run data:test                               # Test a specific library
 npx nx run feature-products:lint                   # Lint a specific library
 
