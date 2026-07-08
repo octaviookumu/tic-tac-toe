@@ -1,0 +1,8 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 100px); /* 3 columns, exactly 100px each */
+  grid-template-rows: repeat(3, 100px); /* 3 rows, exactly 100px each */
+  gap: 12px; /* Adds crisp spacing between boxes */
+  justify-content: center; /* Centers the grid horizontally */
+  margin: 24px auto;
+}

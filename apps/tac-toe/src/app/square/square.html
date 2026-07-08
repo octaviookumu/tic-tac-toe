@@ -1,0 +1,11 @@
+<button
+  [disabled]="disabled()"
+  [ngClass]="{
+    'text-primary font-black': value() === 'X',
+    'text-secondary font-black': value() === 'O',
+    'hover:bg-primary/10 hover:border-primary': !value() && !disabled()
+  }"
+  class="btn btn-square bg-base-100 border-2 border-base-content/20 text-3xl w-full h-full flex items-center justify-center transition-all duration-200 shadow-inner cursor-pointer"
+>
+  {{ value() || ' ' }}
+</button>
