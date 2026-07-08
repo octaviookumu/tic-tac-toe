@@ -8,7 +8,9 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/tac-toe",
@@ -20,7 +22,9 @@
             "input": "apps/tac-toe/public"
           }
         ],
-        "styles": ["apps/tac-toe/src/styles.css"]
+        "styles": [
+          "apps/tac-toe/src/styles.css"
+        ]
       },
       "configurations": {
         "production": {
@@ -36,7 +40,8 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "serviceWorker": "apps/tac-toe/ngsw-config.json"
         },
         "development": {
           "optimization": false,
