@@ -1,0 +1,44 @@
+<div
+  class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col items-center justify-center p-6 antialiased"
+>
+  <div class="flex flex-col items-center max-w-sm w-full">
+    <header class="text-center mb-8">
+      <h1 class="text-3xl font-black tracking-widest uppercase text-white">
+        Tic — Tac — Toe
+      </h1>
+      <p class="text-xs tracking-widest text-zinc-500 uppercase mt-1">
+        Mono Edition
+      </p>
+    </header>
+
+    <main
+      class="grid grid-cols-3 gap-3 bg-zinc-900/50 border border-zinc-800/80 p-3 rounded-2xl w-[320px] h-80 shadow-2xl"
+    >
+      @for (item of squares(); track $index) {
+      <app-square
+        [value]="item"
+        [disabled]="item !== null || winner() !== null"
+        (click)="!item && !winner() && makeMove($index)"
+      >
+      </app-square>
+      }
+    </main>
+
+    <div class="h-12 flex items-center justify-center mt-6 w-full">
+      @if (winner()) {
+      <div
+        class="text-sm font-bold tracking-widest uppercase text-white bg-zinc-900 border border-zinc-800 px-6 py-2 rounded-full shadow-lg animate-pulse"
+      >
+        🏆 Player {{ winner() }} Won
+      </div>
+      }
+    </div>
+
+    <button
+      (click)="startNewGame()"
+      class="mt-4 w-[320px] py-3 bg-white hover:bg-zinc-200 text-zinc-950 font-extrabold tracking-wider uppercase rounded-xl transition-all duration-200 active:scale-[0.98] shadow-xl cursor-pointer"
+    >
+      Start New Game
+    </button>
+  </div>
+</div>
